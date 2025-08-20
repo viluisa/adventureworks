@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: erp
+    database: fea25_05
+    schema: raw_adventure_works
+    tables:
+      - name: production_product
+      - name: production_productsubcategory
+      - name: production_productcategory
