@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: dim_address
+    description: Dimensão de endereços contendo cidade, estado e país.
+    columns:
+      - name: address_pk
+        description: Identificador único do endereço (chave natural).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: address_name
+        description: Nome ou descrição do endereço.
+        data_tests:
+          - not_null
+
+      - name: city_name
+        description: Nome da cidade associada ao endereço.
+
+      - name: state_name
+        description: Nome do estado/província.
+
+      - name: country_pk
+        description: Identificador único do país associado.
+        data_tests:
+          - not_null
+
+      - name: country_name
+        description: Nome do país associado.
+        data_tests:
+          - not_null
