@@ -1,0 +1,19 @@
+models:
+    - name: dim_salesreason
+      description: "Dimensão de motivos de venda (Sales Reason), contendo nome e tipo do motivo."
+      columns:
+      - name: salesreason_pk
+        description: "Chave substituta da razão de venda."
+        tests:
+          - unique
+          - not_null
+
+      - name: salesreason_name
+        description: "Nome da razão de venda."
+        tests:
+          - not_null
+
+      - name: salesreason_type
+        description: "Categoria da razão de venda (ex: Marketing, Promoção, Outros)."
+        tests:
+          - not_null
