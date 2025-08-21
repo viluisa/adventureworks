@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: dim_carditcard
+    description: "Dimensão de tipos de pagamento disponíveis no ERP (ex: Cartão, Dinheiro, Boleto, etc.)."
+    columns:
+      - name: creditcard_pk
+        description: "Chave do tipo de pagamento."
+        tests:
+          - unique
+          - not_null
+
+      - name: creditcard_type
+        description: "Nome do tipo de pagamento (Cartão, Dinheiro, Boleto, etc.)."
+        tests:
+          - not_null
+          - unique

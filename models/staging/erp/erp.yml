@@ -95,3 +95,12 @@ sources:
             description: "Identificador único do motivo da compra."
             tests:
               - not_null
+
+      - name: sales_creditcard
+        description: "Dimensão de tipos de pagamento disponíveis no ERP."
+        columns:
+        - name: creditcardid
+          description: "Chave substituta do tipo de pagamento."
+          tests:
+            - unique
+            - not_null
