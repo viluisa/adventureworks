@@ -2,15 +2,96 @@ version: 2
 
 sources:
   - name: erp
+    description: "Base de dados ERP Adventure Works (fonte bruta extraída do schema raw_adventure_works)."
     database: fea25_05
     schema: raw_adventure_works
+
     tables:
       - name: production_product
+        description: "Tabela de produtos disponíveis no catálogo."
+        columns:
+          - name: productid
+            description: "Identificador único do produto."
+            tests:
+              - not_null
+              - unique
+
       - name: production_productsubcategory
+        description: "Tabela de subcategorias de produtos."
+        columns:
+          - name: productsubcategoryid
+            description: "Identificador único da subcategoria de produto."
+            tests:
+              - not_null
+              - unique
+
       - name: production_productcategory
+        description: "Tabela de categorias de produtos."
+        columns:
+          - name: productcategoryid
+            description: "Identificador único da categoria de produto."
+            tests:
+              - not_null
+              - unique
+
       - name: person_address
+        description: "Tabela de endereços de clientes e lojas."
+        columns:
+          - name: addressid
+            description: "Identificador único do endereço."
+            tests:
+              - not_null
+              - unique
+
       - name: person_countryregion
+        description: "Tabela de países/regiões."
+        columns:
+          - name: countryregioncode
+            description: "Código único do país/região."
+            tests:
+              - not_null
+              - unique
+
       - name: person_stateprovince
+        description: "Tabela de estados/províncias vinculados a países."
+        columns:
+          - name: stateprovinceid
+            description: "Identificador único do estado/província."
+            tests:
+              - not_null
+              - unique
+
       - name: person_person
+        description: "Tabela de pessoas (clientes PF)."
+        columns:
+          - name: businessentityid
+            description: "Identificador único da pessoa."
+            tests:
+              - not_null
+              - unique
+
       - name: sales_customer
+        description: "Tabela de clientes (liga pessoa ou loja)."
+        columns:
+          - name: customerid
+            description: "Identificador único do cliente."
+            tests:
+              - not_null
+              - unique
+
       - name: sales_store
+        description: "Tabela de lojas (clientes PJ)."
+        columns:
+          - name: businessentityid
+            description: "Identificador único da loja."
+            tests:
+              - not_null
+              - unique
+
+      - name: sales_salesreason
+        description: "Tabela de motivos de compra."
+        columns:
+          - name: salesreasonid
+            description: "Identificador único do motivo da compra."
+            tests:
+              - not_null
