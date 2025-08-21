@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: |
+      Dimensão de clientes, unindo pessoas físicas e jurídicas. 
+      A coluna `customer_name` retorna o nome da pessoa ou da loja, 
+      e `customer_type` indica se é PF, PJ ou Desconhecido.
+    columns:
+      - name: customer_pk
+        description: Chave primária do cliente
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_name
+        description: Nome do cliente (pessoa física) ou da loja (pessoa jurídica)
+        tests:
+          - not_null
+
+      - name: customer_type
+        description: Tipo de cliente 'PF' para pessoa física, 'PJ' para pessoa jurídica, 'Desconhecido' se não identificado
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['PF', 'PJ', 'Desconhecido']
