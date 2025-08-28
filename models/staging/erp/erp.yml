@@ -96,6 +96,15 @@ sources:
             tests:
               - not_null
 
+      - name: sales_salesorderheadersalesreason
+        description: "Dimensão de tipos de pagamento disponíveis no ERP."
+        columns:
+        - name: salesorderid
+          description: "Chave substituta do tipo de pagamento."
+          tests:
+            - unique
+            - not_null
+
       - name: sales_creditcard
         description: "Dimensão de tipos de pagamento disponíveis no ERP."
         columns:
