@@ -13,12 +13,12 @@ reason as (
 joined as (
     select
         orr.order_fk,
-        r.reason_pk,
-        r.reason_name,
-        r.reason_type
+        , r.salesreason_pk
+        , r.salesreason_name
+        , r.salesreason_type
     from order_reason orr
     left join reason r
-        on orr.reason_fk = r.reason_pk
+        on orr.reason_fk = r.salesreason_pk
 )
 
 select *

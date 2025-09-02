@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: "Tabela fato de vendas no nível de linha de pedido"
+    columns:
+      - name: sales_order_detail_sk
+        description: "Chave surrogate da fato"
+        tests:
+          - not_null
+
+      - name: customer_fk
+        description: "FK para dim_customers"
+        tests:
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_pk
+
+      - name: product_fk
+        description: "FK para dim_products"
+        tests:
+          - relationships:
+              to: ref('dim_products')
+              field: product_pk
+
+      - name: billto_address_fk
+        description: "FK para dim_address (cobrança)"
+        tests:
+          - relationships:
+              to: ref('dim_address')
+              field: address_pk
+
+      - name: shipto_address_fk
+        description: "FK para dim_address (entrega)"
+        tests:
+          - relationships:
+              to: ref('dim_address')
+              field: address_pk
+
+      - name: creditcard_fk
+        description: "FK para dim_creditcard"
+        tests:
+          - relationships:
+              to: ref('dim_creditcard')
+              field: creditcard_pk
