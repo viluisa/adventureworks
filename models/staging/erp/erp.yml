@@ -97,19 +97,36 @@ sources:
               - not_null
 
       - name: sales_salesorderheadersalesreason
-        description: "Dimensão de tipos de pagamento disponíveis no ERP."
+        description: "Tabela de motivos de compra atrelado ao pedido."
         columns:
         - name: salesorderid
-          description: "Chave substituta do tipo de pagamento."
+          description: "Chave do pedido."
+          tests:
+            - not_null
+
+      - name: sales_creditcard
+        description: "Tabela do tipos de pagamento disponíveis no ERP."
+        columns:
+        - name: creditcardid
+          description: "Chave do tipo de pagamento."
           tests:
             - unique
             - not_null
 
-      - name: sales_creditcard
-        description: "Dimensão de tipos de pagamento disponíveis no ERP."
+      - name: sales_salesorderheader
+        description: "Tabela dos pedidos."
         columns:
-        - name: creditcardid
-          description: "Chave substituta do tipo de pagamento."
+        - name: salesorderid
+          description: "Chave do pedido."
+          tests:
+            - unique
+            - not_null
+
+      - name: sales_salesorderdetail
+        description: "Tabela dos pedidos com detalhes"
+        columns:
+        - name: salesorderdetailid
+          description: "Chave do pedido."
           tests:
             - unique
             - not_null

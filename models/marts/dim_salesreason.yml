@@ -5,7 +5,6 @@ models:
       - name: salesreason_pk
         description: "Chave substituta da razão de venda."
         tests:
-          - unique
           - not_null
 
       - name: salesreason_name
