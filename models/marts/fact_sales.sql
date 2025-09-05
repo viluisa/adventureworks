@@ -4,7 +4,7 @@ with int_sales as (
 )
 
 select
-    orderdetail_pk          as sales_order_detail_sk
+    orderdetail_pk           as sales_order_detail_sk
     , order_pk                as sales_order_id
     , customer_fk
     , product_fk
@@ -13,6 +13,7 @@ select
     , creditcard_fk
     , shipmethod_fk
     , order_date
+    , to_char(order_date, 'YYYYMMDD')::int as order_date_key   -- 🔑 chave surrogate
     , status_order
     , case 
         when status_order = 1 then 'In Process'
@@ -22,7 +23,7 @@ select
         when status_order = 5 then 'Shipped'
         when status_order = 6 then 'Cancelled'
         else 'Unknown'
-    end as order_status_description
+      end as order_status_description
     , order_quantity          as order_qty
     , unit_price
     , gross_sales             as gross_amount
@@ -32,4 +33,5 @@ select
     , tax_amount
     , freight_amount
     , total_due
+
 from int_sales
