@@ -15,7 +15,7 @@ calendar as (
             , row_number() over(order by seq4()) - 1
             , date_start
         ) as date_day
-        , date_start,
+        , date_start
         , date_end
     from bounds, table(generator(rowcount => 20000)) 
     qualify date_day <= date_end
