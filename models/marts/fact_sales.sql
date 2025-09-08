@@ -3,9 +3,9 @@ with int_sales as (
     from {{ ref('int_sales__enriched') }}
 )
 
-, bridge as (
+, reason as (
     select *
-    from {{ ref('bridge__salesreason') }}
+    from {{ ref('int_salesreason__enriched') }}
 )
 
 select
@@ -18,11 +18,10 @@ select
     -- dimensões
     , s.customer_fk                as customer_sk
     , s.product_fk                 as product_sk
-    , s.billtoaddress_fk           as billto_address_sk
-    , s.shiptoaddress_fk           as shipto_address_sk
+    , s.shiptoaddress_fk           as address_sk
     , s.creditcard_fk              as creditcard_sk
     , s.shipmethod_fk              as shipmethod_sk
-    , b.sales_order_reason_sk      as sales_reason_sk
+    , r.sales_order_id             as sales_reason_sk
 
     -- datas
     , s.order_date
@@ -52,5 +51,5 @@ select
     , s.total_due
 
 from int_sales s
-left join bridge b
-    on s.order_pk = b.order_fk
+left join reason r
+    on s.order_pk = r.sales_order_id
