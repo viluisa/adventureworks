@@ -12,8 +12,8 @@ with
     , joined_data as (
         select
             order_reason.order_fk as sales_order_id
-            , listagg(distinct reason.salesreason_pk, ',') within group (order by reason.salesreason_pk) as sales_reason_id
-            , listagg(distinct reason.salesreason_name, ',') within group (order by reason.salesreason_name) as sales_reason_names
+            , listagg(distinct reason.salesreason_pk, ', ') within group (order by reason.salesreason_pk) as sales_reason_id
+            , listagg(distinct reason.salesreason_name, ', ') within group (order by reason.salesreason_name) as sales_reason_names
         from order_reason
         inner join reason
             on order_reason.reason_fk = reason.salesreason_pk
