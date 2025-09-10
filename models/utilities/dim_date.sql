@@ -25,7 +25,8 @@ calendar as (
 final as (
 
     select
-        to_char(date_day, 'YYYYMMDD')::int as date_key
+        -- chave surrogate no formato YYYYMMDD
+         to_char(date_day, 'YYYYMMDD')::int as date_key
         , date_day as full_date
         , year(date_day) as year
         , month(date_day) as month
@@ -34,8 +35,12 @@ final as (
         , day(date_day) as day
         , quarter(date_day) as quarter
         , dayofweek(date_day) as day_of_week
-        , to_char(date_day, 'Day') as day_name
         , case when dayofweek(date_day) in (1,7) then true else false end as is_weekend
+        , to_char(date_day, 'YYYYMM')::int as year_month_num
+        , to_char(date_day, 'MM/YYYY') as month_year           
+        , to_char(date_day, 'Mon/YYYY') as month_year_name       
+        , to_char(date_trunc('month', date_day), 'DD/MM/YYYY') as first_day_of_month
+
     from calendar
 
 )

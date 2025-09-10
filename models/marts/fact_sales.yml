@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: fact_sales
-    description: "Tabela fato de vendas no nível de linha de pedido (order detail). Contém métricas de vendas e chaves para dimensões relacionadas, incluindo razão da venda."
+    description: "Tabela fato de vendas no nível de linha de pedido (order detail). Contém métricas de vendas e chaves para dimensões relacionadas."
     columns:
       - name: sales_order_detail_sk
         description: "Chave surrogate da fato (detalhe da linha do pedido)."
@@ -14,46 +14,43 @@ models:
         description: "Identificador do pedido de venda no sistema transacional."
 
       - name: customer_sk
-        description: "sk para dim_customers."
+        description: "FK para dim_customers."
         tests:
           - relationships:
               to: ref('dim_customers')
               field: customer_pk
 
       - name: product_sk
-        description: "sk para dim_products."
+        description: "FK para dim_products."
         tests:
           - relationships:
               to: ref('dim_products')
               field: product_pk
 
       - name: address_sk
-        description: "sk para dim_address (endereço)."
+        description: "FK para dim_address (endereço de entrega)."
         tests:
           - relationships:
               to: ref('dim_address')
               field: address_pk
 
       - name: creditcard_sk
-        description: "sk para dim_creditcard."
-        tests:
-          - relationships:
-              to: ref('dim_creditcard')
-              field: creditcard_pk
+        description: "FK para dim_creditcard."
 
       - name: shipmethod_sk
-        description: "sk para dim_shipmethod."
-        tests:
-          - relationships:
-              to: ref('dim_shipmethod')
-              field: shipmethod_pk
+        description: "FK para dim_shipmethod."
 
       - name: sales_reason_sk
-        description: "sk para dim_salesreason. Se não informado, aponta para a linha '-1' (Not informed)."
-        tests:
-          - relationships:
-              to: ref('dim_salesreason')
-              field: sales_order_id
+        description: "FK para dim_salesreason. Se não informado, aponta para a linha '-1' (Not informed)."
+
+      - name: creditcard_type
+        description: "Tipo do cartão de crédito utilizado no pedido (dim_creditcard)."
+
+      - name: sales_reason_name
+        description: "Nome da razão de venda associada (dim_salesreason)."
+
+      - name: order_date
+        description: "Data completa em que o pedido foi realizado."
 
       - name: order_date_key
         description: "Chave surrogate para dim_date (data do pedido)."
@@ -85,7 +82,7 @@ models:
         description: "Valor total de desconto aplicado no detalhe do pedido."
 
       - name: subtotal_amount
-        description: "Subtotal do pedido."
+        description: "Subtotal do pedido (soma dos itens)."
 
       - name: tax_amount
         description: "Valor de impostos do pedido."
